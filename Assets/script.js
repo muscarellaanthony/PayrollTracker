@@ -12,18 +12,28 @@ const addEmployeesBtn = document.querySelector('#add-employees-btn');
     employee.firstName = prompt("Enter first name: ");
     employee.lastName = prompt("Enter last name: ");
     employee.salary = prompt("Enter salary: ");
+    if (isNaN(employee.salary)){
+       alert("Salary is not a number. Setting salary to 0.");
+       employee.salary = 0;
+    }
     allEmployees.push(employee);
     addAnother = confirm("Would you like to add another?");
   }
   return allEmployees;
 }
 
-
-
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
   // TODO: Calculate and display the average salary
+  totalSalary = 0;
+  for (i=0;i<employeesArray.length;i++){
+    const currentEmployee = employeesArray[i]
+    totalSalary += parseInt(currentEmployee.salary) 
+  }
+  console.log(totalSalary)
+  return totalSalary;
 }
+
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
