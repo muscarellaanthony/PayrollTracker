@@ -5,31 +5,44 @@ const addEmployeesBtn = document.querySelector('#add-employees-btn');
 // Collect employee data
   const collectEmployees = function(){
   // TODO: Get user input to create and return an array of employee objects
+  // create array that will hold every employee entry
   const allEmployees = [];
+  // create a boolean to dictate loop repetition
   let addAnother = true;
+  // create a loop that will take user input for an employee and repeat for several possible entries
   while (addAnother){ 
+    // create employee object that will enter the overall list indiviually
     let employee ={};
+    //ask for basic employee data
     employee.firstName = prompt("Enter first name: ");
     employee.lastName = prompt("Enter last name: ");
-    employee.salary = parseInt(prompt("Enter salary: "));
+    employee.salary = parseInt(prompt("Enter salary: ")); //turn salary string to an integer
+    // error message for salary entries that aren't a number, default salary to 0
     if (isNaN(employee.salary)){
        alert("Salary is not a number. Setting salary to 0.");
        employee.salary = 0;
     }
+    // enter employee object to allemployee array
     allEmployees.push(employee);
     addAnother = confirm("Would you like to add another?");
   }
+  //return the array of emplyoees
   return allEmployees;
 }
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
   // TODO: Calculate and display the average salary
+  // initialize a totalSalary variable to 0
   totalSalary = 0;
+  // create a loop that will cycle though each emplyees recorded salary
   for (i=0;i<employeesArray.length;i++){
+    // create a variable that will hold the employee array identification 
     const currentEmployee = employeesArray[i];
+    // add emplyees salary to totalSalary
     totalSalary += parseInt(currentEmployee.salary);
   }
+  // calculate employee average salary with total salary
   let averageSalary = totalSalary / employeesArray.length;
   console.log(`Average salary is ${averageSalary}.`)
   console.log(`There are ${employeesArray.length} employees.`)
@@ -40,7 +53,9 @@ const displayAverageSalary = function(employeesArray) {
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
   // TODO: Select and display a random employee
+  // pick a whole number between 0 and the length of the employee list
   let randomEmployee = Math.floor(Math.random() * employeesArray.length);
+  // use that number to choose the corresponding employee in the employee array
   console.log(`Congrats to ${employeesArray[randomEmployee].firstName} ${employeesArray[randomEmployee].lastName}!`);
 }
 
